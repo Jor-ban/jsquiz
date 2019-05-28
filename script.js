@@ -22,7 +22,7 @@ let description = [
 
 function finishing() {
     greeting('content','win');
-    let innerText = '<p>WOW you have found it!</p><p> It was ' + word[randomlyFound] + ' !</p>' + '<p>It took from you ' + tries + ' letters</p>'+`<button onclick="greeting('win', 'content')">next word</button>`;
+    let innerText = '<p>WOW you have found it!</p><p> It was ' + word[randomlyFound] + ' !</p>' + '<p>It took from you ' + tries + ' letters</p>'+`<button onclick="greeting('win', 'content')">next</button>`;
     document.getElementById('win').innerHTML = innerText;
 }
 
