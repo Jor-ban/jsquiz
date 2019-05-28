@@ -28,9 +28,7 @@ function finishing() {
 
 function greeting(id, id2) {
     document.getElementById(id2).classList.remove('hidden-content');
-    document.getElementById(id2).classList.add('zm');
     document.getElementById(id).classList.add('hidden-content');
-    document.getElementById(id).classList.remove('zm');
 }
 
 function gameOver() {
