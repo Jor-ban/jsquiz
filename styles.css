@@ -47,6 +47,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 666;
 }
 .description{
     font-size: 1.5vw;
@@ -107,9 +108,6 @@ body{
 }
 .correct{
     background-color: rgb(100, 255, 165);
-}
-.zm{
-    z-index: 666;
 }
 @media(max-width:768px){
     .keyboard{
