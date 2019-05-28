@@ -76,7 +76,7 @@ body{
 
 .keyboard{
     position:absolute;
-    bottom:10px;
+    bottom:20vh;
     margin-top: 3vh;
     display: flex;
     flex-wrap: wrap;
