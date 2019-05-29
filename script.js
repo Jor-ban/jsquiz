@@ -1,34 +1,18 @@
 //program to find a hidden word letter by letter
 //Nuriddinov Jamoliddin
 
-
-//inputs part
-let word = [
-    'array', //1
-    'object', //2
-    'script', //3
-    'library', //4
-    'loop', //5
-    'undefined' //6
-];
-let description = [
-    'a variable that contains a sequence of data', //1
-    'a variable that contains a sequence of variables with values', //2
-    'HTML tag to import a js script to web site', //3
-    'what is JQuery?', //4
-    'what type of operators "for" and "while" are?', //5
-    'what will be the output? <br>  var a;<br>  console.log(a);  ' //6
-];
-
 function finishing() {
     greeting('content','win');
-    let innerText = '<p>WOW you have found it!</p><p> It was ' + word[randomlyFound] + ' !</p>' + '<p>It took from you ' + tries + ' letters</p>'+`<button onclick="greeting('win', 'content')">Next</button>`;
+    let innerText = '<p>WOW you have found it!</p><p> It was "' + word[randomlyFound] + '" !</p>' + '<p>You have chosen ' + tries + ' wrong letters</p>'+`<button onclick="greeting('win', 'content')">next</button>`;
     document.getElementById('win').innerHTML = innerText;
 }
 
 function greeting(id, id2) {
     document.getElementById(id2).classList.remove('hidden-content');
     document.getElementById(id).classList.add('hidden-content');
+    if(id == 'content'){
+        isWindowBusy = true;
+    }
 }
 
 function gameOver() {
@@ -47,7 +31,6 @@ function isCorrectLetter(letter) {
             document.getElementById('guessingWord').innerHTML = hiddenLetters;
         }
     }
-    tries++;
     console.log('tries = ' + tries);
     return returnBool;
 }
@@ -61,6 +44,10 @@ function guessedLetter(letter) {
         if (isCorrectLetter(letter)) {
             document.getElementById(letter).classList.add('correct');
         }
+        else{
+            tries++
+            document.getElementById('nav').innerHTML = tries;
+        }
 
         if (isHidden(hiddenLetters) == false) {
             gameOver();
@@ -71,7 +58,13 @@ function guessedLetter(letter) {
 
 }
 document.onkeypress = function (event) {
-    guessedLetter(event.key);
+    if(isWindowBusy == true){
+        greeting('win', 'content');
+        greeting('greeting', 'content');
+        tries = 0;
+        isWindowBusy = false;
+    }
+    else guessedLetter(event.key);
 }
 
 
@@ -104,6 +97,7 @@ function nextWord() {
 
     document.getElementById('description').innerHTML = description[randomlyFound];
     tries = 0;
+    document.getElementById('nav').innerHTML = tries;
     hiddenLetters = []
 
     //clearing the keyboard
@@ -120,13 +114,11 @@ function nextWord() {
 
 }
 
-
 let randomlyFound = Math.round(Math.random() * (word.length - 1));
+let isWindowBusy = true;
 let hiddenLetters = [];
 let tries = 0;
-let keyboardButtons = [
-    'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'
-]
+document.getElementById('nav').innerHTML = tries;
 
 document.getElementById('description').innerHTML = description[randomlyFound];
 
